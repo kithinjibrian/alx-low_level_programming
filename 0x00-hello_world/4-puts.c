@@ -2,8 +2,10 @@
 
 int main(void)
 {
-	/*
-	 *Program to print a string using puts
+	/**
+	 * main - Entry point
+	 *
+	 * Return: Always 0 (success)
 	 */
 	puts("\"Programming is like building a multilingual puzzle");
 	return (0);
