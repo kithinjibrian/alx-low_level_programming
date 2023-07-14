@@ -14,7 +14,13 @@ for (i = 0; i < 10; i++)
     {
         if (i != j)
         {
-            printf("%d%d\n", i, j);
+            putchar(i + 48);
+            putchar(j + 48);
+            if ((i + 48) != '8')
+            {
+            putchar(',');
+            putchar(' ');
+            }
         }
     }
 }
