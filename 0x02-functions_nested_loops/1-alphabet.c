@@ -1,17 +1,12 @@
 #include <stdio.h>
-/*
- *
- *
- * */
+#include "main.h"
 
-void print_alphabet(void)
-{
-	for (char c = 'a'; c <= 'z'; c++)
-	{
-		putchar(c);
-	}
-	putchar('\n');
-}
+/**
+ *main - entry point
+ *
+ * Return: Always 0 (Success)
+ * On error, -1 is returned, and errno is set appropriately.
+ */
 
 int main(void)
 {
