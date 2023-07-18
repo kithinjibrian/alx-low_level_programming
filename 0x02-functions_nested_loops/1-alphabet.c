@@ -2,14 +2,16 @@
 #include "main.h"
 
 /**
- *main - entry point
- *
- * Return: Always 0 (Success)
- * On error, -1 is returned, and errno is set appropriately.
+ * print_alphabet - prints the english alphabet from a-z.
+ * Return: Nothing.
  */
 
-int main(void)
+void print_alphabet(void)
 {
-	print_alphabet();
-	return (0);
+    char c;
+	for (c = 'a'; c <= 'z'; c++)
+	{
+		_putchar(c);
+	}
+	_putchar('\n');
 }
