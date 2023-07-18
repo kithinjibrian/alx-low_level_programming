@@ -27,7 +27,8 @@ void print_to_98(int lb)
 			_putchar(lb);
 			if(lb != 98)
 			{
-				_putchar(', ');
+				_putchar(',');
+				_putchar(' ');
 			}
 		}
 	}
