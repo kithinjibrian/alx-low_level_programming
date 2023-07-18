@@ -1,5 +1,5 @@
 #include <unistd.h>
-#include <stdio.h>
+int _putchar(int c);
 /**
  *print_alphabet - print alphabet
  */
