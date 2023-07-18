@@ -4,17 +4,14 @@
 /**
  * _islower - tests whether a character is a
  * lowercase letter from the English alphabet.
- * @c: character to test.
+ * @ch: character to test.
  * Return: 1 if it is a lowercase letter, 0 if it is not a lowercase letter.
  */
 
 int _islower(char ch)
 {
-	if( islower(ch))
-	{
+	if (islower(ch))
 		return (1);
-	}
-	else {
+	else
 		return (0);
-	}
 }
