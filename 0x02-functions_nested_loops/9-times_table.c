@@ -1,29 +1,26 @@
-#include <stdio.h>
+#include "main.h"
 
 /**
- *
- *
- *
+ * times_table - prints the times table from 0 - 9.
+*
+ * Return: Nothing.
  */
 
 void times_table(void)
 {
-	for (int i = 0; i < 10; i++)
+	int i, y;
+
+	for (i = 0; i < 10; i++)
 	{
-		for (int y = 0; y < 10; y++)
+		for (y = 0; y < 10; y++)
 		{
-			printf("%d",i * y);
+			_putchar((i * y) + '0');
 			if(y != 9)
 			{
-				printf(", ");
+				_putchar(',');
+				_putchar(' ');
 			}
 		}
-		printf("\n");
+		_putchar('\n');
 	}
-}
-
-int main(void)
-{
-	times_table();
-	return (0);
 }
