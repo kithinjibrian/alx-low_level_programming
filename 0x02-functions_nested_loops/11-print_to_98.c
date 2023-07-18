@@ -10,7 +10,7 @@ void print_to_98(int lb)
 {
 	if(lb > 98)
 	{
-		for (lb; lb >= 98; lb--)
+		for (lb = lb; lb >= 98; lb--)
 		{
 			_putchar(lb);
 			if(lb != 98)
@@ -20,8 +20,9 @@ void print_to_98(int lb)
 			}
 		}
 	}
-	else {
-		for (lb; lb <= 98; lb++)
+	else
+	{
+		for (lb = lb; lb <= 98; lb++)
 		{
 			_putchar(lb);
 			if(lb != 98)
