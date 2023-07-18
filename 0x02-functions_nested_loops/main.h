@@ -1,6 +1,5 @@
 #include <unistd.h>
-#include "_putchar.c"
-
+#include <stdio.h>
 /**
  * _putchar - writes the character c to stdout
  * @c: The character to print
@@ -23,7 +22,7 @@ void print_alphabet(void)
     char c;
 	for (c = 'a'; c <= 'z'; c++)
 	{
-		_putchar(c);
+		putchar(c);
 	}
-	_putchar('\n');
+	putchar('\n');
 }
