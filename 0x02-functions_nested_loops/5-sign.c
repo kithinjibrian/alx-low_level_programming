@@ -1,40 +1,29 @@
-#include <stdio.h>
-
+#include "main.h"
 /**
- *
- *
- *
+ * print_sign - Determines whether an integer is positive, negative or zero.
+ * @n: the number to be checked.
+ * Return: 1 if positive, 0 if zero, -1 if negative, / if not a digit.
  */
-
-int print_sign(int i)
+int print_sign(int n)
 {
-	if (i > 0)
+	if (n > 0)
 	{
+		_putchar('+');
 		return (1);
 	}
-	else if (i == 0)
+	else if (n == 0)
 	{
+		_putchar('0');
 		return (0);
 	}
-	else {
+	else if (n < 0)
+	{
+		_putchar('-');
 		return (-1);
 	}
-}
-
-void display(int r)
-{
-	char ch = r == 0 ? '0' : r > 0 ? '+' : '-';
-	putchar(ch);
-	putchar(',');
-	putchar(' ');
-	putchar(r + '0');
-	putchar('\n');
-}
-
-int main(void)
-{
-	display(print_sign(98));
-	display(print_sign(0));
-	display(print_sign(0xff));
-	display(print_sign(-1));
+	else
+	{
+		_putchar('-');
+		return ('/');
+	}
 }
