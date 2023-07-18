@@ -9,22 +9,23 @@
 
 void print_to_98(int lb)
 {
-	if(lb > 98)
+	if (lb > 98)
 	{
 		for (lb = lb; lb >= 98; lb--)
 		{
 			printf("%d", lb);
-			if(lb != 98)
+			if (lb != 98)
 			{
 				printf(", ");
 			}
 		}
 	}
-	else {
+	else
+	{
 		for (lb = lb; lb <= 98; lb++)
 		{
 			printf("%d", lb);
-			if(lb != 98)
+			if (lb != 98)
 			{
 				printf(", ");
 			}
