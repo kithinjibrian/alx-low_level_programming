@@ -1,32 +1,16 @@
-#include <stdio.h>
 #include <ctype.h>
-/*
- *
- *
- * */
+#include "main.h"
+/**
+ * _isalpha - tests whether a character is from the English alphabet.
+ * @ch: character to be checked.
+ * Return: 1 if the character is an English character.
+ * 0 if the character is not an English character.
+ */
 
 int _isalpha(char ch)
 {
-	if( isalpha(ch))
-	{
+	if (isalpha(ch))
 		return (1);
-	}
-	else {
+	else
 		return (0);
-	}
-}
-
-int main(void)
-{
-	int r;
-	r = _isalpha('H');
-	putchar(r + '0');
-	r = _isalpha('o');
-	putchar(r + '0');
-	r = _isalpha(108);
-	putchar(r + '0');
-	r = _isalpha(';');
-	putchar(r + '0');
-	putchar('\n');
-	return (0);
 }
