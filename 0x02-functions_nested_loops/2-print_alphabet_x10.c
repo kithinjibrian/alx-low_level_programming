@@ -1,28 +1,16 @@
-#include <stdio.h>
-/*
- *
- *
- * */
+#include "main.h"
 
-void print_alphabet(void)
-{
-	for (char c = 'a'; c <= 'z'; c++)
-	{
-		putchar(c);
-	}
-	putchar('\n');
-}
+/**
+  * print_alphabet_x10 - repeats the print_alphabet 10 times.
+  * Return: Nothing.
+  */
 
 void print_alphabet_x10(void)
 {
-	for(int i = 0; i < 10; i++)
+	int i;
+
+	for (i = 0; i < 10; i++)
 	{
 		print_alphabet();
 	}
-}
-
-int main(void)
-{
-	print_alphabet_x10();
-	return (0);
 }
