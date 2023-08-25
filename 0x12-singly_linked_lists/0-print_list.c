@@ -19,9 +19,9 @@ size_t print_list(const list_t *h)
 		else
 		{
 			printf("[%u] %s\n", h->len, h->str);
-			h = h->next;
-			size += 1;
 		}
+		h = h->next;
+		size++;
 	}
 
 	return (size);
