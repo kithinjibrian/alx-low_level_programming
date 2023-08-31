@@ -6,31 +6,31 @@
  *
  * Return: The converted unsigned integer, or 0 if input is not a valid binary.
  */
-unsigned int binary_to_int(const char *b)
+unsigned int binary_to_uint(const char *b)
 {
-	unsigned int i;
-	int l, bt;
+	unsigned int ui;
+	int len, base_two;
 
 	if (!b)
 		return (0);
 
-	i = 0;
+	ui = 0;
 
-	for (l = 0; b[l] != '\0'; l++)
+	for (len = 0; b[len] != '\0'; len++)
 		;
 
-	for (l--, bt = 1; l >= 0; l--, bt *= 2)
+	for (len--, base_two = 1; len >= 0; len--, base_two *= 2)
 	{
-		if (b[l] != '0' && b[l] != '1')
+		if (b[len] != '0' && b[len] != '1')
 		{
 			return (0);
 		}
 
-		if (b[l] & 1)
+		if (b[len] & 1)
 		{
-			i += bt;
+			ui += base_two;
 		}
 	}
 
-	return (i);
+	return (ui);
 }
