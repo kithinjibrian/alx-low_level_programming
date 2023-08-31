@@ -9,19 +9,17 @@
 unsigned int binary_to_int(const char *b)
 {
 	unsigned int i;
-	int l, b;
+	int l, bt;
 
 	if (!b)
-	{
 		return (0);
-	}
 
 	i = 0;
 
 	for (l = 0; b[l] != '\0'; l++)
 		;
 
-	for (l--, b = 1; l >= 0; l--, b *= 2)
+	for (l--, bt = 1; l >= 0; l--, bt *= 2)
 	{
 		if (b[l] != '0' && b[l] != '1')
 		{
@@ -30,7 +28,7 @@ unsigned int binary_to_int(const char *b)
 
 		if (b[l] & 1)
 		{
-			i += b;
+			i += bt;
 		}
 	}
 
