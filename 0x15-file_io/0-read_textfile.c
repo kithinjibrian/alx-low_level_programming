@@ -1,38 +1,51 @@
 #include "main.h"
 
 /**
- * read_textfile - Reads a text file and writes it to standard output.
+ * read_textfile - Reads and displays the contents of a text file to stdout.
  *
- * @filename: The name of the file to read.
- * @letters: The maximum number of bytes to read and write.
+ * @filename: The name of the text file to be read.
+ * @letters: The number of characters to read and display.
  *
- * Return: The number of bytes written to standard output on success,
- *         or -1 on failure (including memory allocation, file opening,
- *         reading, and writing errors).
+ * Return: The number of bytes read and displayed, or 0 on failure.
  */
 ssize_t read_textfile(const char *filename, size_t letters)
 {
 	int fd;
-	char *buf;
-	int lenRead, lenWrite;
+	char *buffer;
+	int byte_read, byte_write;
 
+	/* Check if the filename is NULL */
 	if (filename == NULL)
 		return (0);
 
+	/* Open the file in read-only mode */
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 		return (0);
-	buf = malloc(letters * sizeof(char));
 
-	if (buf == NULL)
+	/* Allocate memory for the buffer */
+	buffer = malloc(letters * sizeof(char));
+	if (buffer == NULL)
 		return (0);
 
-	lenRead = read(fd, buf, letters);
+	/* Read data from the file into the buffer */
+	byte_read = read(fd, buffer, letters);
 
-	lenWrite = write(STDOUT_FILENO, buf, lenRead);
-	if (lenWrite != lenRead && lenWrite == -1)
+	/* Write the read data to stdout (standard output) */
+	byte_write = write(STDOUT_FILENO, buffer, byte_read);
+
+	/* Check for write errors or incomplete writes */
+	if (byte_write != byte_read && byte_write == -1)
+	{
+		free(buffer);
+		close(fd);
 		return (0);
-	free(buf);
+	}
+
+	/* Free the allocated memory and close the file */
+	free(buffer);
 	close(fd);
-	return (lenRead);
+
+	/* Return the number of bytes read and displayed */
+	return (byte_read);
 }
