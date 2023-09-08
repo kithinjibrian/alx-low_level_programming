@@ -2,19 +2,20 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <string.h>
-#include <errno.h>
 
+/* Function to print an error message and exit */
 void error_exit(int code, const char *message)
 {
-	dprintf(STDERR_FILENO, "%s\n", message);
+	fprintf(stderr, "%s\n", message);
 	exit(code);
 }
 
 int main(int argc, char *argv[])
 {
+	int fd_from, fd_to;
+	char buffer[1024];
+	ssize_t bytes_read, bytes_written;
+
 	if (argc != 3)
 	{
 		error_exit(97, "Usage: cp file_from file_to");
@@ -23,54 +24,40 @@ int main(int argc, char *argv[])
 	const char *file_from = argv[1];
 	const char *file_to = argv[2];
 
-	int fd_from = open(file_from, O_RDONLY);
+	fd_from = open(file_from, O_RDONLY);
 	if (fd_from == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file_from);
-		exit(98);
+		error_exit(98, "Error: Can't read from file");
 	}
 
-	int fd_to = open(file_to, O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
+	fd_to = open(file_to, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd_to == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't write to file %s\n", file_to);
-		close(fd_from);
-		exit(99);
+		error_exit(99, "Error: Can't write to file");
 	}
-
-	char buffer[1024];
-	ssize_t bytes_read;
 
 	while ((bytes_read = read(fd_from, buffer, sizeof(buffer))) > 0)
 	{
-		ssize_t bytes_written = write(fd_to, buffer, bytes_read);
+		bytes_written = write(fd_to, buffer, bytes_read);
 		if (bytes_written == -1)
 		{
-			dprintf(STDERR_FILENO, "Error: Can't write to file %s\n", file_to);
-			close(fd_from);
-			close(fd_to);
-			exit(99);
+			error_exit(99, "Error: Can't write to file");
 		}
 	}
 
 	if (bytes_read == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file_from);
-		close(fd_from);
-		close(fd_to);
-		exit(98);
+		error_exit(98, "Error: Can't read from file");
 	}
 
 	if (close(fd_from) == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_from);
-		exit(100);
+		error_exit(100, "Error: Can't close fd");
 	}
 
 	if (close(fd_to) == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_to);
-		exit(100);
+		error_exit(100, "Error: Can't close fd");
 	}
 
 	return 0;
