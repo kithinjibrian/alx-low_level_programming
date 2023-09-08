@@ -3,15 +3,31 @@
 #include <unistd.h>
 #include <fcntl.h>
 
-/* Function to print an error message and exit */
+/**
+ * error_exit - Print an error message and exit the program.
+ * @code: The exit code to use.
+ * @message: The error message to display.
+ *
+ * This function prints an error message to the standard error stream
+ * and exits the program with the specified exit code.
+ */
 void error_exit(int code, const char *message)
 {
 	fprintf(stderr, "%s\n", message);
 	exit(code);
 }
 
+/**
+ * main - Copy the contents of one file to another.
+ * @argc: The number of command-line arguments.
+ * @argv: An array of strings containing the arguments.
+ *
+ * Return: 0 on success, or an error code on failure.
+ */
 int main(int argc, char *argv[])
 {
+	const char *file_from;
+	const char *file_to;
 	int fd_from, fd_to;
 	char buffer[1024];
 	ssize_t bytes_read, bytes_written;
@@ -21,8 +37,8 @@ int main(int argc, char *argv[])
 		error_exit(97, "Usage: cp file_from file_to");
 	}
 
-	const char *file_from = argv[1];
-	const char *file_to = argv[2];
+	file_from = argv[1];
+	file_to = argv[2];
 
 	fd_from = open(file_from, O_RDONLY);
 	if (fd_from == -1)
